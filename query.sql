@@ -14,16 +14,18 @@ CREATE TABLE
     mahasiswa (
         nim CHARACTER(4) PRIMARY KEY NOT NULL,
         nama_mahasiswa VARCHAR(30) NOT NULL,
-        alamat VARCHAR(50)
+        alamat VARCHAR(50),
+        nama_jurusan VARCHAR(10) NOT NULL,
+        FOREIGN KEY (nama_jurusan) REFERENCES jurusan (nama_jurusan)
     );
 
 INSERT INTO
     mahasiswa
 VALUES
-    ('1234', 'ayam', 'bandung'),
-    ('2345', 'bebek', 'surabaya'),
-    ('3456', 'kuda', 'semarang'),
-    ('7899', 'sapi', 'semarang');
+    ('1234', 'ayam', 'bandung', 'Alam'),
+    ('2345', 'bebek', 'surabaya', 'Alam'),
+    ('3456', 'kuda', 'semarang', 'Sosial'),
+    ('7899', 'sapi', 'semarang', 'Sosial');
 
 CREATE TABLE
     dosen (

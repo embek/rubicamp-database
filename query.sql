@@ -94,3 +94,28 @@ FROM
     JOIN jurusan USING (kode_jurusan)
 WHERE
     nilai >= 'D';
+
+SELECT
+    matakuliah.kode_matakuliah,
+    matakuliah.nama_matakuliah,
+    mahasiswa.nim,
+    mahasiswa.nama_mahasiswa,
+    jurusan.kode_jurusan,
+    jurusan.nama_jurusan,
+    dosen.no_induk_dosen,
+    dosen.nama_dosen,
+    daftar_peserta.nilai
+FROM
+    dosen,
+    daftar_pengampu,
+    matakuliah,
+    daftar_peserta,
+    mahasiswa,
+    jurusan
+WHERE
+    dosen.no_induk_dosen = daftar_pengampu.no_induk_dosen
+    AND daftar_pengampu.kode_matakuliah = matakuliah.kode_matakuliah
+    AND matakuliah.kode_matakuliah=daftar_peserta.kode_matakuliah
+    AND daftar_peserta.nim=mahasiswa.nim
+    AND mahasiswa.kode_jurusan=jurusan.kode_jurusan
+    AND nilai >= 'D';

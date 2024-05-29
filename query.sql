@@ -53,11 +53,12 @@ CREATE TABLE
 INSERT INTO
     matakuliah
 VALUES
-    ('AL001', 'Matematika', 3),
-    ('AL002', 'Ipa', 2),
-    ('AL003', 'Pramuka', 10),
-    ('SS001', 'Geografi', 2),
-    ('SS002', 'Hukum Rimba', 4);
+    ('AL001', 'Matematika', 4),
+    ('AL002', 'Ipa', 4),
+    ('AL003', 'Pramuka', 6),
+    ('SS001', 'Geografi', 5),
+    ('SS002', 'Hukum Rimba', 3),
+    ('SS003', 'Data Mining', 5);
 
 CREATE TABLE
     daftar_pengampu (
@@ -77,7 +78,8 @@ VALUES
     ('Pramuka', 'Pak Singa'),
     ('Geografi', 'Mas Ako'),
     ('Hukum Rimba', 'Bu Merpati'),
-    ('Hukum Rimba', 'Ms.Teri');
+    ('Hukum Rimba', 'Ms.Teri'),
+    ('Data Mining', 'Mas Ako');
 
 CREATE TABLE
     daftar_peserta (
@@ -94,6 +96,8 @@ INSERT INTO
     daftar_peserta (nama_matakuliah, nama_mahasiswa, hari, nilai)
 VALUES
     ('Geografi', 'kuda', 'senin', 'A'),
+    ('Data Mining', 'sapi', 'rabu', 'A'),
+    ('Data Mining', 'kuda', 'rabu', 'C'),
     ('Hukum Rimba', 'kuda', 'selasa', 'AB'),
     ('Hukum Rimba', 'sapi', 'selasa', 'E'),
     ('Ipa', 'ayam', 'rabu', 'B'),
@@ -119,4 +123,5 @@ VALUES
     ('Alam', 'Ipa', 7),
     ('Alam', 'Pramuka', 15),
     ('Sosial', 'Geografi', 6),
-    ('Sosial', 'Hukum Rimba', 9);
+    ('Sosial', 'Hukum Rimba', 9),
+    ('Sosial', 'Data Mining', 4);

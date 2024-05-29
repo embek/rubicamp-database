@@ -126,4 +126,74 @@ VALUES
     ('Sosial', 'Hukum Rimba', 9),
     ('Sosial', 'Data Mining', 4);
 
-SELECT nama_mahasiswa,nama_jurusan FROM mahasiswa;
+SELECT
+    nama_mahasiswa,
+    nama_jurusan
+FROM
+    mahasiswa;
+
+SELECT
+    nama_mahasiswa,
+    umur
+FROM
+    mahasiswa
+GROUP BY
+    nama_mahasiswa
+HAVING
+    umur < 20;
+
+SELECT
+    nama_mahasiswa,
+    nilai
+FROM
+    daftar_peserta
+GROUP BY
+    nama_mahasiswa
+HAVING
+    nilai <= 'B';
+
+SELECT
+    nama_mahasiswa,
+    SUM(sks) as jumlah_sks
+FROM
+    daftar_peserta
+    JOIN matakuliah USING (nama_matakuliah)
+GROUP BY
+    nama_mahasiswa
+HAVING
+    jumlah_sks > 10;
+
+SELECT
+    nama_mahasiswa,
+    nama_matakuliah
+FROM
+    daftar_peserta
+WHERE
+    nama_matakuliah = 'Data Mining';
+
+SELECT
+    nama_dosen,
+    COUNT(DISTINCT nama_mahasiswa)
+FROM
+    daftar_pengampu
+    JOIN daftar_peserta USING (nama_matakuliah)
+GROUP BY
+    nama_dosen;
+
+SELECT
+    nama_mahasiswa,
+    umur
+FROM
+    mahasiswa
+ORDER BY
+    umur ASC;
+
+SELECT
+    *
+FROM
+    daftar_peserta
+    LEFT JOIN mahasiswa USING (nama_mahasiswa)
+    LEFT JOIN penawaran_matakuliah USING (nama_matakuliah, nama_jurusan)
+    LEFT JOIN daftar_pengampu USING (nama_matakuliah)
+WHERE
+    nilai > = 'D';

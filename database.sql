@@ -1,7 +1,7 @@
 CREATE TABLE
     jurusan (
         kode_jurusan CHARACTER(3) PRIMARY KEY NOT NULL,
-        nama_jurusan VARCHAR(10) NOT NULL
+        nama_jurusan VARCHAR(30) NOT NULL
     );
 
 INSERT INTO
@@ -15,18 +15,18 @@ CREATE TABLE
         nim CHARACTER(4) PRIMARY KEY NOT NULL,
         nama_mahasiswa VARCHAR(30) NOT NULL,
         alamat VARCHAR(50),
-        nama_jurusan VARCHAR(10) NOT NULL,
-        umur INTEGER,
-        FOREIGN KEY (nama_jurusan) REFERENCES jurusan (nama_jurusan)
+        kode_jurusan CHARACTER(3) NOT NULL,
+        tgl_lahir DATE,
+        FOREIGN KEY (kode_jurusan) REFERENCES jurusan (kode_jurusan)
     );
 
 INSERT INTO
     mahasiswa
 VALUES
-    ('1234', 'ayam', 'bandung', 'Alam', 17),
-    ('2345', 'bebek', 'surabaya', 'Alam', 18),
-    ('3456', 'kuda', 'semarang', 'Sosial', 20),
-    ('7899', 'sapi', 'semarang', 'Sosial', 24);
+    ('1234', 'ayam', 'bandung', 'J01', 2007 -04 -12),
+    ('2345', 'bebek', 'surabaya', 'J01', 2006 -07 -20),
+    ('3456', 'kuda', 'semarang', 'J02', 2004 -11 -07),
+    ('7899', 'sapi', 'semarang', 'J02', 2000 -01 -02);
 
 CREATE TABLE
     dosen (
@@ -47,7 +47,7 @@ CREATE TABLE
     matakuliah (
         kode_matakuliah CHARACTER(5) PRIMARY KEY NOT NULL,
         nama_matakuliah VARCHAR(20) NOT NULL,
-        sks INTEGER
+        sks INTEGER NOT NULL
     );
 
 INSERT INTO
@@ -63,65 +63,44 @@ VALUES
 CREATE TABLE
     daftar_pengampu (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nama_matakuliah VARCHAR(20) NOT NULL,
-        nama_dosen VARCHAR(30) NOT NULL,
-        FOREIGN KEY (nama_matakuliah) REFERENCES matakuliah (nama_matakuliah),
-        FOREIGN KEY (nama_dosen) REFERENCES dosen (nama_dosen)
+        kode_matakuliah CHARACTER(5) NOT NULL,
+        no_induk_dosen VARCHAR(30) NOT NULL,
+        FOREIGN KEY (kode_matakuliah) REFERENCES matakuliah (kode_matakuliah),
+        FOREIGN KEY (no_induk_dosen) REFERENCES dosen (no_induk_dosen)
     );
 
 INSERT INTO
-    daftar_pengampu (nama_matakuliah, nama_dosen)
+    daftar_pengampu (kode_matakuliah, no_induk_dosen) 
 VALUES
-    ('Matematika', 'Pak Singa'),
-    ('Matematika', 'Bu Aya'),
-    ('Ipa', 'Bu Aya'),
-    ('Pramuka', 'Pak Singa'),
-    ('Geografi', 'Mas Ako'),
-    ('Hukum Rimba', 'Bu Merpati'),
-    ('Hukum Rimba', 'Ms.Teri'),
-    ('Data Mining', 'Mas Ako');
+    ('AL001', '1596357'),
+    ('AL001', '7536982'),
+    ('AL002', '7536982'),
+    ('AL003', '1596357'),
+    ('SS001', '7894215'),
+    ('SS002', '6248539'),
+    ('SS002', '7346528'),
+    ('SS003', '7894215');
 
 CREATE TABLE
     daftar_peserta (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nama_matakuliah VARCHAR(20) NOT NULL,
-        nama_mahasiswa VARCHAR(30) NOT NULL,
-        hari VARCHAR(7),
-        nilai VARCHAR(2),
-        FOREIGN KEY (nama_matakuliah) REFERENCES matakuliah (nama_matakuliah),
-        FOREIGN KEY (nama_mahasiswa) REFERENCES mahasiswa (nama_mahasiswa)
+        kode_matakuliah VARCHAR(20) NOT NULL,
+        nim VARCHAR(4) NOT NULL,
+        nilai VARCHAR(2) NOT NULL,
+        FOREIGN KEY (kode_matakuliah) REFERENCES matakuliah (kode_matakuliah),
+        FOREIGN KEY (nim) REFERENCES mahasiswa (nim)
     );
 
 INSERT INTO
-    daftar_peserta (nama_matakuliah, nama_mahasiswa, hari, nilai)
+    daftar_peserta (kode_matakuliah, nim, nilai)
 VALUES
-    ('Geografi', 'kuda', 'senin', 'A'),
-    ('Data Mining', 'sapi', 'rabu', 'A'),
-    ('Data Mining', 'kuda', 'rabu', 'C'),
-    ('Hukum Rimba', 'kuda', 'selasa', 'AB'),
-    ('Hukum Rimba', 'sapi', 'selasa', 'E'),
-    ('Ipa', 'ayam', 'rabu', 'B'),
-    ('Ipa', 'bebek', 'rabu', 'AB'),
-    ('Matematika', 'ayam', 'kamis', 'D'),
-    ('Matematika', 'bebek', 'kamis', 'AB'),
-    ('Pramuka', 'bebek', 'jumat', 'A');
-
-CREATE TABLE
-    penawaran_matakuliah (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nama_jurusan VARCHAR(10) NOT NULL,
-        nama_matakuliah VARCHAR(20) NOT NULL,
-        peserta_maksimal INTEGER,
-        FOREIGN KEY (nama_jurusan) REFERENCES jurusan (nama_jurusan),
-        FOREIGN KEY (nama_matakuliah) REFERENCES matakuliah (nama_matakuliah)
-    );
-
-INSERT INTO
-    penawaran_matakuliah (nama_jurusan, nama_matakuliah, peserta_maksimal)
-VALUES
-    ('Alam', 'Matematika', 5),
-    ('Alam', 'Ipa', 7),
-    ('Alam', 'Pramuka', 15),
-    ('Sosial', 'Geografi', 6),
-    ('Sosial', 'Hukum Rimba', 9),
-    ('Sosial', 'Data Mining', 4);
+    ('SS001', '3456', 'A'),
+    ('SS003', '7899', 'A'),
+    ('SS003', '3456', 'C'),
+    ('SS002', '3456', 'AB'),
+    ('SS002', '7899', 'E'),
+    ('AL002', '1234', 'B'),
+    ('AL002', '2345', 'AB'),
+    ('AL001', '1234', 'D'),
+    ('AL001', '2345', 'AB'),
+    ('AL003', '2345', 'A');

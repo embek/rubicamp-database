@@ -76,7 +76,8 @@ ORDER BY
     umur ASC;
 
 SELECT
-    DISTINCT nama_matakuliah,
+    kode_matakuliah,
+    nama_matakuliah,
     nim,
     nama_mahasiswa,
     kode_jurusan,

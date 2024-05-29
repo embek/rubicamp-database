@@ -95,10 +95,10 @@ INSERT INTO
 VALUES
     ('Geografi', 'kuda', 'senin', 'A'),
     ('Hukum Rimba', 'kuda', 'selasa', 'AB'),
-    ('Hukum Rimba', 'sapi', 'selasa', 'A'),
+    ('Hukum Rimba', 'sapi', 'selasa', 'E'),
     ('Ipa', 'ayam', 'rabu', 'B'),
     ('Ipa', 'bebek', 'rabu', 'AB'),
-    ('Matematika', 'ayam', 'kamis', 'BC'),
+    ('Matematika', 'ayam', 'kamis', 'D'),
     ('Matematika', 'bebek', 'kamis', 'AB'),
     ('Pramuka', 'bebek', 'jumat', 'A');
 

@@ -15,8 +15,8 @@ CREATE TABLE
         nim CHARACTER(4) PRIMARY KEY NOT NULL,
         nama_mahasiswa VARCHAR(30) NOT NULL,
         alamat VARCHAR(50),
-        umur INTEGER,
         nama_jurusan VARCHAR(10) NOT NULL,
+        umur INTEGER,
         FOREIGN KEY (nama_jurusan) REFERENCES jurusan (nama_jurusan)
     );
 

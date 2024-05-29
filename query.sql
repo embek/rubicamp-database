@@ -195,5 +195,5 @@ FROM
     LEFT JOIN mahasiswa USING (nama_mahasiswa)
     LEFT JOIN penawaran_matakuliah USING (nama_matakuliah, nama_jurusan)
     LEFT JOIN daftar_pengampu USING (nama_matakuliah)
-WHERE
-    nilai > = 'D';
+where
+    nilai >= 'D';

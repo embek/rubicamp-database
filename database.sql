@@ -23,10 +23,10 @@ CREATE TABLE
 INSERT INTO
     mahasiswa
 VALUES
-    ('1234', 'ayam', 'bandung', 'J01', 2007 -04 -12),
-    ('2345', 'bebek', 'surabaya', 'J01', 2006 -07 -20),
-    ('3456', 'kuda', 'semarang', 'J02', 2004 -11 -07),
-    ('7899', 'sapi', 'semarang', 'J02', 2000 -01 -02);
+    ('1234', 'ayam', 'bandung', 'J01', '2007-04-12'),
+    ('2345', 'bebek', 'surabaya', 'J01', '2006-07-20'),
+    ('3456', 'kuda', 'semarang', 'J02', '2004-11-07'),
+    ('7899', 'sapi', 'semarang', 'J02', '2000-01-02');
 
 CREATE TABLE
     dosen (
@@ -70,7 +70,7 @@ CREATE TABLE
     );
 
 INSERT INTO
-    daftar_pengampu (kode_matakuliah, no_induk_dosen) 
+    daftar_pengampu (kode_matakuliah, no_induk_dosen)
 VALUES
     ('AL001', '1596357'),
     ('AL001', '7536982'),

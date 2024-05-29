@@ -23,10 +23,10 @@ CREATE TABLE
 INSERT INTO
     mahasiswa
 VALUES
-    ('1234', 'ayam', 'bandung', 'Alam',17),
-    ('2345', 'bebek', 'surabaya', 'Alam',18),
-    ('3456', 'kuda', 'semarang', 'Sosial',20),
-    ('7899', 'sapi', 'semarang', 'Sosial',24);
+    ('1234', 'ayam', 'bandung', 'Alam', 17),
+    ('2345', 'bebek', 'surabaya', 'Alam', 18),
+    ('3456', 'kuda', 'semarang', 'Sosial', 20),
+    ('7899', 'sapi', 'semarang', 'Sosial', 24);
 
 CREATE TABLE
     dosen (
@@ -85,21 +85,22 @@ CREATE TABLE
         nama_matakuliah VARCHAR(20) NOT NULL,
         nama_mahasiswa VARCHAR(30) NOT NULL,
         hari VARCHAR(7),
+        nilai VARCHAR(2),
         FOREIGN KEY (nama_matakuliah) REFERENCES matakuliah (nama_matakuliah),
         FOREIGN KEY (nama_mahasiswa) REFERENCES mahasiswa (nama_mahasiswa)
     );
 
 INSERT INTO
-    daftar_peserta (nama_matakuliah, nama_mahasiswa, hari)
+    daftar_peserta (nama_matakuliah, nama_mahasiswa, hari, nilai)
 VALUES
-    ('Geografi', 'kuda', 'senin'),
-    ('Hukum Rimba', 'kuda', 'selasa'),
-    ('Hukum Rimba', 'sapi', 'selasa'),
-    ('Ipa', 'ayam', 'rabu'),
-    ('Ipa', 'bebek', 'rabu'),
-    ('Matematika', 'ayam', 'kamis'),
-    ('Matematika', 'bebek', 'kamis'),
-    ('Pramuka', 'bebek', 'jumat');
+    ('Geografi', 'kuda', 'senin', 'A'),
+    ('Hukum Rimba', 'kuda', 'selasa', 'AB'),
+    ('Hukum Rimba', 'sapi', 'selasa', 'A'),
+    ('Ipa', 'ayam', 'rabu', 'B'),
+    ('Ipa', 'bebek', 'rabu', 'AB'),
+    ('Matematika', 'ayam', 'kamis', 'BC'),
+    ('Matematika', 'bebek', 'kamis', 'AB'),
+    ('Pramuka', 'bebek', 'jumat', 'A');
 
 CREATE TABLE
     penawaran_matakuliah (

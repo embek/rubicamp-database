@@ -14,7 +14,7 @@ CREATE TABLE
     mahasiswa (
         nim CHARACTER(4) PRIMARY KEY NOT NULL,
         nama_mahasiswa VARCHAR(30) NOT NULL,
-        alamat VARCHAR(50),
+        alamat text,
         kode_jurusan CHARACTER(3) NOT NULL,
         tgl_lahir DATE,
         FOREIGN KEY (kode_jurusan) REFERENCES jurusan (kode_jurusan)
@@ -31,7 +31,7 @@ VALUES
 CREATE TABLE
     dosen (
         no_induk_dosen CHARACTER(7) PRIMARY KEY NOT NULL,
-        nama_dosen VARCHAR(30)
+        nama_dosen VARCHAR(30) NOT NULL
     );
 
 INSERT INTO
@@ -64,7 +64,7 @@ CREATE TABLE
     daftar_pengampu (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         kode_matakuliah CHARACTER(5) NOT NULL,
-        no_induk_dosen VARCHAR(30) NOT NULL,
+        no_induk_dosen CHARACTER(7) NOT NULL,
         FOREIGN KEY (kode_matakuliah) REFERENCES matakuliah (kode_matakuliah),
         FOREIGN KEY (no_induk_dosen) REFERENCES dosen (no_induk_dosen)
     );

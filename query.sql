@@ -9,24 +9,22 @@ FROM
 SELECT
     nim,
     nama_mahasiswa,
-    date () - tgl_lahir AS umur
+    DATE () - tgl_lahir AS umur
 FROM
     mahasiswa
-GROUP BY
-    nim
-HAVING
+WHERE
     umur < 20;
 
 SELECT
     nim,
     nama_mahasiswa,
-    nilai
+    nilai,
+    nama_matakuliah
 FROM
-    daftar_peserta
-    JOIN mahasiswa USING (nim)
-GROUP BY
-    nim
-HAVING
+    mahasiswa
+    JOIN daftar_peserta USING (nim)
+    JOIN matakuliah USING (kode_matakuliah)
+WHERE
     nilai <= 'B';
 
 SELECT
@@ -56,7 +54,7 @@ WHERE
 SELECT
     no_induk_dosen,
     nama_dosen,
-    COUNT(DISTINCT nama_mahasiswa) AS jumlah_mahasiswa
+    COUNT(DISTINCT nim) AS jumlah_mahasiswa
 FROM
     daftar_pengampu
     JOIN dosen USING (no_induk_dosen)
@@ -64,12 +62,12 @@ FROM
     JOIN matakuliah USING (kode_matakuliah)
     JOIN mahasiswa USING (nim)
 GROUP BY
-    nama_dosen;
+    no_induk_dosen;
 
 SELECT
     nim,
     nama_mahasiswa,
-    date ('now') - date (tgl_lahir) AS umur
+    DATE ('now') - DATE (tgl_lahir) AS umur
 FROM
     mahasiswa
 ORDER BY
@@ -86,12 +84,12 @@ SELECT
     nama_dosen,
     nilai
 FROM
-    dosen
-    JOIN daftar_pengampu USING (no_induk_dosen)
-    JOIN matakuliah USING (kode_matakuliah)
-    JOIN daftar_peserta USING (kode_matakuliah)
-    JOIN mahasiswa USING (nim)
-    JOIN jurusan USING (kode_jurusan)
+    mahasiswa
+    LEFT JOIN daftar_peserta USING (nim)
+    LEFT JOIN matakuliah USING (kode_matakuliah)
+    LEFT JOIN daftar_pengampu USING (kode_matakuliah)
+    LEFT JOIN dosen USING (no_induk_dosen)
+    LEFT JOIN jurusan USING (kode_jurusan)
 WHERE
     nilai >= 'D';
 
@@ -115,7 +113,7 @@ FROM
 WHERE
     dosen.no_induk_dosen = daftar_pengampu.no_induk_dosen
     AND daftar_pengampu.kode_matakuliah = matakuliah.kode_matakuliah
-    AND matakuliah.kode_matakuliah=daftar_peserta.kode_matakuliah
-    AND daftar_peserta.nim=mahasiswa.nim
-    AND mahasiswa.kode_jurusan=jurusan.kode_jurusan
+    AND matakuliah.kode_matakuliah = daftar_peserta.kode_matakuliah
+    AND daftar_peserta.nim = mahasiswa.nim
+    AND mahasiswa.kode_jurusan = jurusan.kode_jurusan
     AND nilai >= 'D';
